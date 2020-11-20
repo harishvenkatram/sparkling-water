@@ -52,11 +52,11 @@ Dynamic allocation must be disabled in Spark.
             $SPARK_HOME/bin/spark-submit \
             --master k8s://KUBERNETES_ENDPOINT \
             --deploy-mode cluster \
-            --class ai.h2o.sparkling.InitTest \
+            --class ai.h2o.sparkling.KubernetesTests \
             --conf spark.scheduler.minRegisteredResourcesRatio=1 \
             --conf spark.kubernetes.container.image=h2oai/sparkling-water-scala:SUBST_SW_VERSION \
             --conf spark.executor.instances=3 \
-            local:///opt/sparkling-water/tests/initTest.jar
+            local:///opt/sparkling-water/tests/kubernetesTest.jar
 
         **To start an interactive shell in a client mode:**
 
@@ -117,11 +117,11 @@ Dynamic allocation must be disabled in Spark.
              --conf spark.scheduler.minRegisteredResourcesRatio=1 \
              --conf spark.kubernetes.container.image=h2oai/sparkling-water-scala:SUBST_SW_VERSION \
              --master "k8s://KUBERNETES_ENDPOINT" \
-             --class ai.h2o.sparkling.InitTest \
+             --class ai.h2o.sparkling.KubernetesTests \
              --conf spark.driver.host=sparkling-water-app \
              --deploy-mode client \
              --conf spark.executor.instances=3 \
-            local:///opt/sparkling-water/tests/initTest.jar
+            local:///opt/sparkling-water/tests/kubernetesTest.jar
 
     .. tab-container:: Python
         :title: Python
@@ -277,7 +277,7 @@ After we created the external H2O backend, we can connect to it from Sparkling W
             $SPARK_HOME/bin/spark-submit \
             --master k8s://KUBERNETES_ENDPOINT \
             --deploy-mode cluster \
-            --class ai.h2o.sparkling.InitTest \
+            --class ai.h2o.sparkling.KubernetesTests \
             --conf spark.scheduler.minRegisteredResourcesRatio=1 \
             --conf spark.kubernetes.container.image=h2oai/sparkling-water-scala:SUBST_SW_VERSION \
             --conf spark.executor.instances=3 \
@@ -286,7 +286,7 @@ After we created the external H2O backend, we can connect to it from Sparkling W
             --conf spark.ext.h2o.external.memory=2G \
             --conf spark.ext.h2o.cloud.representative=h2o-service.default.svc.cluster.local:54321 \
             --conf spark.ext.h2o.cloud.name=root \
-            local:///opt/sparkling-water/tests/initTest.jar
+            local:///opt/sparkling-water/tests/kubernetesTest.jar
 
         **To start an interactive shell in a client mode:**
 
@@ -352,7 +352,7 @@ After we created the external H2O backend, we can connect to it from Sparkling W
              --conf spark.scheduler.minRegisteredResourcesRatio=1 \
              --conf spark.kubernetes.container.image=h2oai/sparkling-water-scala:SUBST_SW_VERSION \
              --master "k8s://KUBERNETES_ENDPOINT" \
-             --class ai.h2o.sparkling.InitTest \
+             --class ai.h2o.sparkling.KubernetesTests \
              --conf spark.driver.host=sparkling-water-app \
              --deploy-mode client \
              --conf spark.ext.h2o.backend.cluster.mode=external \
@@ -361,7 +361,7 @@ After we created the external H2O backend, we can connect to it from Sparkling W
              --conf spark.ext.h2o.cloud.representative=h2o-service.default.svc.cluster.local:54321 \
              --conf spark.ext.h2o.cloud.name=root \
              --conf spark.executor.instances=3 \
-            local:///opt/sparkling-water/tests/initTest.jar
+            local:///opt/sparkling-water/tests/kubernetesTest.jar
 
     .. tab-container:: Python
         :title: Python
@@ -528,7 +528,7 @@ is specified using the ``spark.ext.h2o.external.k8s.docker.image`` option.
             $SPARK_HOME/bin/spark-submit \
             --master k8s://KUBERNETES_ENDPOINT \
             --deploy-mode cluster \
-            --class ai.h2o.sparkling.InitTest \
+            --class ai.h2o.sparkling.KubernetesTests \
             --conf spark.scheduler.minRegisteredResourcesRatio=1 \
             --conf spark.kubernetes.container.image=h2oai/sparkling-water-scala:SUBST_SW_VERSION \
             --conf spark.executor.instances=3 \
@@ -538,7 +538,7 @@ is specified using the ``spark.ext.h2o.external.k8s.docker.image`` option.
             --conf spark.ext.h2o.external.cluster.size=2 \
             --conf spark.ext.h2o.external.memory=2G \
             --conf spark.ext.h2o.external.k8s.docker.image=h2oai/sparkling-water-scala:SUBST_SW_VERSION \
-            local:///opt/sparkling-water/tests/initTest.jar
+            local:///opt/sparkling-water/tests/kubernetesTest.jar
 
         **To start an interactive shell in a client mode:**
 
@@ -605,7 +605,7 @@ is specified using the ``spark.ext.h2o.external.k8s.docker.image`` option.
              --conf spark.scheduler.minRegisteredResourcesRatio=1 \
              --conf spark.kubernetes.container.image=h2oai/sparkling-water-scala:SUBST_SW_VERSION \
              --master "k8s://KUBERNETES_ENDPOINT" \
-             --class ai.h2o.sparkling.InitTest \
+             --class ai.h2o.sparkling.KubernetesTests \
              --conf spark.driver.host=sparkling-water-app \
              --deploy-mode client \
              --conf spark.ext.h2o.backend.cluster.mode=external \
@@ -615,7 +615,7 @@ is specified using the ``spark.ext.h2o.external.k8s.docker.image`` option.
              --conf spark.ext.h2o.external.memory=2G \
              --conf spark.ext.h2o.external.k8s.docker.image=h2oai/sparkling-water-scala:SUBST_SW_VERSION \
              --conf spark.executor.instances=3 \
-            local:///opt/sparkling-water/tests/initTest.jar
+            local:///opt/sparkling-water/tests/kubernetesTest.jar
 
     .. tab-container:: Python
         :title: Python

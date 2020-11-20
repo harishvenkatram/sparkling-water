@@ -166,9 +166,9 @@ def testScalaInternalBackendClusterMode(registryId, master, version) {
          --master $master \
          --deploy-mode cluster \
          --name test \
-         --class ai.h2o.sparkling.InitTest \
+         --class ai.h2o.sparkling.KubernetesTests \
          --conf spark.executor.instances=3 \
-         local:///opt/sparkling-water/tests/initTest.jar
+         local:///opt/sparkling-water/tests/kubernetesTest.jar
         """
     sh "kubectl get pod driver-scala | grep -q Completed && echo \"OK\" || exit 1"
 }
@@ -230,11 +230,11 @@ def testScalaInternalBackendClientMode(registryId, master, version) {
          --conf spark.scheduler.minRegisteredResourcesRatio=1 \
          --conf spark.kubernetes.container.image=${image}  \
          --master $master \
-         --class ai.h2o.sparkling.InitTest \
+         --class ai.h2o.sparkling.KubernetesTests \
          --conf spark.driver.host=sparkling-water-app \
          --deploy-mode client \
          --conf spark.executor.instances=3 \
-         local:///opt/sparkling-water/tests/initTest.jar
+         local:///opt/sparkling-water/tests/kubernetesTest.jar
         """
     sh "kubectl get pod sparkling-water-app | grep -q Completed && echo \"OK\" || exit 1"
 }
@@ -302,7 +302,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
         - name: h2o-k8s
-          image: '${registryId}.dkr.ecr.${awsRegion()}.amazonaws.com/sw_kubernetes_repo/sparkling-water:external-backend-${version}'
+          image: '${registryId}.dkr.ecr.${awsRegion()}.amazonaws.com/sw_kubernetes_repo/sparkling-water:ex1ternal-backend-${version}'
           resources:
             requests:
               memory: "2Gi"
@@ -415,8 +415,8 @@ static String scalaExternalBackendSubmitCmd(registryId, master, version, mode, s
         prefix = externalBackendAutoSharedSubmitCmd(registryId, master, version, mode, "scala")
     }
     return """${prefix} \
-              --class ai.h2o.sparkling.InitTest \
-              local:///opt/sparkling-water/tests/initTest.jar
+              --class ai.h2o.sparkling.KubernetesTests \
+              local:///opt/sparkling-water/tests/kubernetesTest.jar
             """
 }
 
